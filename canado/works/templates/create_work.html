@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>darbo_sukurimas</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+    {{ works_form.as_p }}
+    <button type="submit" name='works-form'>Pridėti darbą</button>
+</form>
+<form method="POST">
+    {% csrf_token %}
+    {{ car_form.as_p }}
+    <button type="submit" name='car-form'>Pridėti auto</button>
+</form>
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    <strong>Form has errors:</strong>
+    <ul>
+        {% for field_errors in form.errors.values %}
+            {% for error in field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<script>
+    window.onload = function () {
+    document.getElementById("id_start_time").setAttribute("type", "date");
+    document.getElementById("id_end_time").setAttribute("type", "time");
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Priskirti darbuotoją</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.darbuotojas.label_tag }}
+    {{ form.darbuotojas }}
+    <br>
+    {{ form.priskirti_darbai.label_tag }}
+    {{ form.priskirti_darbai }}
+    <br>
+    <button type="submit">Priskirti</button>
+  </form>
+{% endblock %}
+
