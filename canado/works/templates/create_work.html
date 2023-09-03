@@ -16,11 +16,11 @@
     <button type="submit" name='car-form'>Pridėti auto</button>
 </form>
 
-{% if form.errors %}
+{% if works_form.errors %}
 <div class="alert alert-danger">
     <strong>Form has errors:</strong>
     <ul>
-        {% for field_errors in form.errors.values %}
+        {% for field_errors in works_form.errors.values %}
             {% for error in field_errors %}
                 <li>{{ error }}</li>
             {% endfor %}
