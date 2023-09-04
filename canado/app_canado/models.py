@@ -29,6 +29,14 @@ class Usermanager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    USER_TYPES = (
+        ('vadybininkas', 'vadybininkas'),
+        ('mechanikas', 'mechanikas'),
+        ('dazytojas', 'dazytojas'),
+        ('elektrikas', 'elektrikas'),
+        ('saltkalvis', 'saltkalvis'),
+
+    )
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(
         verbose_name='El. paštas',
@@ -47,6 +55,7 @@ class User(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     is_anonymous = models.BooleanField(default=False)
     is_authenticated = models.BooleanField(default=False)
+    is_manager = models.BooleanField(default=False)
     objects = Usermanager()
     USERNAME_FIELD = 'email'
 
@@ -58,8 +67,7 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    def __str__(self):
-        return f"{self.name} {self.surname}"
+
     @property
     def is_staff(self):
         return self.is_admin

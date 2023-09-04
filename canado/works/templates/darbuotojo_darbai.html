@@ -1,0 +1,8 @@
+{% extends 'main_page.html' %}
+
+{% block content %}
+  <h2>Darbuotojai darbai</h2>
+{%for work in works%}
+  <p><a href="/works/darbas/{{ work.id}}/">{{work.darbas}}</a></p>
+{%endfor%}
+{% endblock %}

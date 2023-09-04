@@ -9,3 +9,9 @@ class WorksForm(forms.ModelForm):
         fields = '__all__'
 
 
+class WorkTimeForm(forms.ModelForm):
+    class Meta:
+        model = Works
+        fields = ['darbas', 'start_time', 'end_time']
+
+

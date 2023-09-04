@@ -25,8 +25,23 @@ class Works(models.Model):
         verbose_name='Valandinis įkainis', default=0.00
     )
 
-    start_time = models.DateTimeField(verbose_name='Darbo pradžios laikas')
-    end_time = models.DateTimeField(verbose_name='Darbo pabaigos laikas')
+    car = models.ForeignKey(
+        'car.Car',
+        on_delete=models.SET_NULL,
+        verbose_name='Automobilis',
+        related_name='works',
+        null=True
+    )
+
+    darbuotojas = models.ForeignKey(
+        'app_canado.User',
+        on_delete=models.SET_NULL,
+        verbose_name='Darbuotojas',
+        related_name='works',
+        null=True
+    )
+    start_time = models.DateTimeField(verbose_name='Darbo pradžios laikas',blank=True, null=True)
+    end_time = models.DateTimeField(verbose_name='Darbo pabaigos laikas',blank=True, null=True)
 
     def skaiciuoti_uzmokesti(self):
         if self.start_time and self.end_time and self.valandinis_ikainis:

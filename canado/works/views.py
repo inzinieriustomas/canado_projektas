@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .forms import WorksForm
+from .forms import WorksForm, WorkTimeForm
 from car.forms import CarForm
 
 from .models import Works
@@ -45,3 +45,32 @@ def create_work(request):
 def works_list(request):
     works = Works.objects.all()
     return render(request, 'works_list.html', {'works': works})
+
+def darbai_darbuotojams(request):
+    works_form = WorksForm()
+
+    if request.method == 'POST':
+        if "works-form" in request.POST:
+            form = WorksForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect( '/works/works/')
+    context = {'works_form': works_form,}
+    return render(request, 'create_work.html',context)
+
+def darbuotojo_darbai(request):
+    works = Works.objects.filter(darbuotojas=request.user)
+    return render(request, 'darbuotojo_darbai.html', {'works': works})
+
+def darbas(request,id):
+    work = Works.objects.get(id=id)
+    form = WorkTimeForm(instance=work)
+    if request.method == 'POST':
+        form = WorkTimeForm(request.POST, instance=work)
+
+        if form.is_valid():
+            form.save()
+            return redirect( '/works/darbuotojo_darbai/')
+
+    return render(request, 'darbas.html', {'form': form, 'work': work})
