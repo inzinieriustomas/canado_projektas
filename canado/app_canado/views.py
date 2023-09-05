@@ -9,7 +9,6 @@ def main_page(request):
     return render(request, 'main_page.html')
 
 def vadybininkui(request):
-    return render(request, 'vadybininkui.html')
     works = Works.objects.all()
     return render(request, 'vadybininkui.html', {'works': works})
 
