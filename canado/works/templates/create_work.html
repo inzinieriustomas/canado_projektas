@@ -4,37 +4,38 @@
     <meta charset="UTF-8">
     <title>darbo_sukurimas</title>
 </head>
-<body>
-<form method="POST">
-    {% csrf_token %}
-    {{ works_form.as_p }}
-    <button type="submit" name='works-form'>Pridėti darbą</button>
-</form>
-<form method="POST">
-    {% csrf_token %}
-    {{ car_form.as_p }}
-    <button type="submit" name='car-form'>Pridėti auto</button>
-</form>
+<body style="background-color: gray; text-align: center;">
+<div style="display: inline-block; background-color: gray; padding: 20px; border-radius: 10px; margin-top: 20px;">
+    <form method="POST">
+        {% csrf_token %}
+        {{ works_form.as_p }}
+        <button type="submit" name='works-form'>Pridėti darbą</button>
+    </form>
+    <form method="POST">
+        {% csrf_token %}
+        {{ car_form.as_p }}
+        <button type="submit" name='car-form'>Pridėti auto</button>
+    </form>
 
-{% if works_form.errors %}
-<div class="alert alert-danger">
-    <strong>Form has errors:</strong>
-    <ul>
-        {% for field_errors in works_form.errors.values %}
-            {% for error in field_errors %}
-                <li>{{ error }}</li>
+    {% if works_form.errors %}
+    <div class="alert alert-danger">
+        <strong>Form has errors:</strong>
+        <ul>
+            {% for field_errors in works_form.errors.values %}
+                {% for error in field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-    </ul>
+        </ul>
+    </div>
+    {% endif %}
 </div>
 
-{% endif %}
 <script>
     window.onload = function () {
-    document.getElementById("id_start_time").setAttribute("type", "datetime-local");
-    document.getElementById("id_end_time").setAttribute("type", "datetime-local");
+        document.getElementById("id_start_time").setAttribute("type", "datetime-local");
+        document.getElementById("id_end_time").setAttribute("type", "datetime-local");
     }
-
 </script>
 </body>
 </html>

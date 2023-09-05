@@ -1,3 +1,5 @@
+from django.contrib.auth import get_user_model
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -61,7 +63,13 @@ def darbai_darbuotojams(request):
 
 def darbuotojo_darbai(request):
     works = Works.objects.filter(darbuotojas=request.user)
+    # User = get_user_model()
+    # try:
+    #     user = User.objects.get(pk=request.user.pk)
+    # except User.DoesNotExist:
+    #     raise Http404("Vartotojas neegzistuoja")
     return render(request, 'darbuotojo_darbai.html', {'works': works})
+
 
 def darbas(request,id):
     work = Works.objects.get(id=id)

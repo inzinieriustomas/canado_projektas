@@ -1,0 +1,15 @@
+{% extends "main_page.html" %}
+
+{% block content %}
+  <div id="content-main">
+    <form method="post" class="login-form">
+      {% csrf_token %}
+      {{ form.username.label_tag }} {{ form.username }}
+      {{ form.password.label_tag }} {{ form.password }}
+      <div class="submit-row">
+        <input type="submit" value="Prisijungti" class="default" />
+      <a href="{% url 'logout' %}" class="logout-link">Atsijungti</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

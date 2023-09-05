@@ -5,8 +5,16 @@
 <a href="/car/add_car">Pridėti automobilį</a>
 <h2>Ivesti darbus</h2>
 <a href="/works/works">Pridėti darbus</a>
-
+<h2>Atlikti darbai</h2>
+  <ul>
+    {% for work in works %}
+      <li>{{ work.darbas }} - {{ work.pareigos }} - {{ work.start_time }} - {{ work.end_time }} - Užmokestis: {{ work.skaiciuoti_uzmokesti }}</li>
+    {% empty %}
+      <li>Nėra darbų šiuo metu</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
+
 
 
 

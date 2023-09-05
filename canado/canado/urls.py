@@ -18,9 +18,10 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from app_canado import views
+
 from django.contrib.auth import views as auth_views
 
+from app_canado import views
 # from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -33,7 +34,11 @@ urlpatterns = [
     path('mechanikui/', views.mechanikui, name='mechanikui'),
     path('saltkalviui/', views.saltkalviui, name='saltkalviui'),
     path('elektrikui/', views.elektrikui, name='elektrikui'),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html', success_url='/'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout.html', next_page='main_page'), name='logout'),
+    # path('darbuotojui/', views.darbuotojui, name='darbuotojui'),
+    # path('login/', auth_views.LoginView.as_view(template_name='login.html', success_url='/works/darbuotojo_darbai/'), name='login'),
+
 
     # path('login/',auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     # path('logout/',auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),

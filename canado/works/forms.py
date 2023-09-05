@@ -10,6 +10,16 @@ class WorksForm(forms.ModelForm):
 
 
 class WorkTimeForm(forms.ModelForm):
+    start_time = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        input_formats=['%Y-%m-%dT%H:%M'],  # Pasirinkite norimus datos ir laiko formatą
+    )
+
+    end_time = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        input_formats=['%Y-%m-%dT%H:%M'],  # Pasirinkite norimus datos ir laiko formatą
+    )
+
     class Meta:
         model = Works
         fields = ['darbas', 'start_time', 'end_time']

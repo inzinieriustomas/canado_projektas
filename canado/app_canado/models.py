@@ -1,6 +1,8 @@
 # import uuid
 import uuid
+from django.contrib.auth.models import Group
 
+from django.contrib.auth import user_logged_in
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 
@@ -59,14 +61,12 @@ class User(AbstractBaseUser):
     objects = Usermanager()
     USERNAME_FIELD = 'email'
 
-
     def __str__(self):
         return self.email
     def has_perm(self, perm, obj=None):
         return True
     def has_module_perms(self, app_label):
         return True
-
 
     @property
     def is_staff(self):

@@ -36,12 +36,18 @@
 </head>
 <body>
     <div class="header">
-        {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}">Atsijungti</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Atsijungti</a>
+        {% if user.is_manager %}
+            <a href="{% url 'vadybininkui' %}">Vadybininkui</a>
         {% else %}
-            <a href="{% url 'login' %}">Prisijungti</a>
+            <a href="/works/darbuotojo_darbai">Darbuotojui</a>
         {% endif %}
-    </div>
+    {% else %}
+        <a href="{% url 'login' %}">Prisijungti</a>
+    {% endif %}
+</div>
+
 
 
     <img class="logo" src="/media/logo.png" alt="CANADO logo">
